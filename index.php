@@ -21,7 +21,7 @@ $board = new Board($_GET["board"]);
 </head>
 
 <body>
-  <code><?php print_r($board->input_parsed); ?></code>
+  <code><?php print_r($board->evaluate()); ?></code>
 </body>
 
 </html>
