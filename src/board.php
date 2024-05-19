@@ -1,17 +1,25 @@
 <?php
+enum GameState
+{
+  case RUNNING;
+  case PLAYERW;
+  case CPUW;
+  case TIED;
+}
+enum Move: int
+{
+  case Player = 1;
+  case CPU = 2;
+}
+
 class Board
 {
   private string $input_raw;
   private array $input_split;
   public array $input_parsed;
-
-  // 0 = open
-  // 1 = X (Player)
-  // 2 = O (CPU)
-
   private array $player_cpu_map = array(
-    1 => "Player",
-    2 => "CPU"
+    1 => GameState::PLAYERW,
+    2 => GameState::CPUW
   );
 
   public function __construct(string $input)
@@ -39,7 +47,7 @@ class Board
       return intval($el, 10);
     }, $this->input_split);
   }
-  public function evaluate()
+  public function evaluate(): GameState
   {
     $res = 0;
     $res = $this->eval_rows();
@@ -51,8 +59,7 @@ class Board
     }
     // someone has won
     if ($res > 0) {
-      echo $this->player_cpu_map[$res] . " has won the game.";
-      return;
+      return $this->player_cpu_map[$res];
     }
     // game is tied
     $found_zero = false;
@@ -62,12 +69,13 @@ class Board
       }
     }
     if (!$found_zero) {
-      echo "The game is tied.";
-      return;
+      return GameState::TIED;
     }
     // game still running
-    echo "The game is in progress.";
+    return GameState::RUNNING;
   }
+
+  // eval methods return 1 if the player has won, 2 if CPU has won, and 0 if no winner has been determined (tied or running)
   private function eval_rows(): int
   {
     for ($i = 0; $i < 7; $i += 3) {
