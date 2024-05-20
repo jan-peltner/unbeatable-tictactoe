@@ -10,6 +10,7 @@ $board = new Board($_GET["board"]);
 $state = $board->evaluate();
 if ($state == GameState::RUNNING) {
   $naive_brain = new NaiveBrain($board->input_parsed);
+  $new_board = $naive_brain->plan_move();
 }
 ?>
 
@@ -27,7 +28,7 @@ if ($state == GameState::RUNNING) {
 </head>
 
 <body>
-  <code><?php print_r($board->evaluate()); ?></code>
+  <code><?php print_r($new_board); ?></code>
 </body>
 
 </html>
