@@ -17,8 +17,8 @@ jobs:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script: |
-            cd ${{ secrets.VPS_PROJECT_PATH }}  # Update with your VPS project path
-            git pull origin master 
-            # Add custom commands if needed (e.g., service restart)
+            cd ${{ secrets.VPS_PROJECT_PATH }}
+            git pull origin master
 
