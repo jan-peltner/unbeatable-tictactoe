@@ -2,7 +2,7 @@ name: Deploy to def9
 
 on:
   push:
-    branches: [master]  # Trigger on pushes to the main branch
+    branches: [master]
 
 jobs:
   deploy:
