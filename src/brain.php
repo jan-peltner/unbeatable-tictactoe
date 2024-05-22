@@ -1,7 +1,7 @@
 <?php
-interface PlanMove
+interface MakeMove
 {
-  public function plan_move(): array;
+  public function make_move(): array;
 }
 
 class Brain
@@ -18,13 +18,13 @@ class Brain
   }
 }
 
-class NaiveBrain extends Brain implements PlanMove
+class NaiveBrain extends Brain implements MakeMove
 {
   public function __construct($board)
   {
     parent::__construct($board);
   }
-  public function plan_move(): array
+  public function make_move(): array
   {
     $empty_spaces = array();
 
@@ -39,13 +39,13 @@ class NaiveBrain extends Brain implements PlanMove
   }
 }
 
-class SmartBrain extends Brain implements PlanMove
+class SmartBrain extends Brain implements MakeMove
 {
   public function __construct($board)
   {
     parent::__construct($board);
   }
-  public function plan_move(): array
+  public function make_move(): array
   {
     return array();
   }
