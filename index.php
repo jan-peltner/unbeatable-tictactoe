@@ -3,8 +3,8 @@ if ($_GET["board"] == null) {
   die("Please provide a board param.");
 }
 
-require "src/board.php";
-require "src/brain.php";
+require "src/php/classes/board.php";
+require "src/php/classes/brain.php";
 
 $board = new Board($_GET["board"]);
 $state = $board->evaluate();
@@ -28,8 +28,6 @@ if ($state == GameState::RUNNING) {
 </head>
 
 <body>
-  <p class="bg-blue-200">test!</p>
-  <code><?php print_r($new_board); ?></code>
 </body>
 
 </html>
