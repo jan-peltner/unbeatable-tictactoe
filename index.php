@@ -7,10 +7,14 @@ require "src/php/classes/board.php";
 require "src/php/classes/brain.php";
 
 $board = new Board($_GET["board"]);
+
+// evaluate move made by player
 $state = $board->evaluate();
 if ($state == GameState::RUNNING) {
   $naive_brain = new NaiveBrain($board->input_parsed);
-  $new_board = $naive_brain->make_move();
+  $board = $naive_brain->make_move();
+  // evaluate move made by CPU 
+  $state = (new Board($board))->evaluate();
 }
 ?>
 
@@ -28,6 +32,17 @@ if ($state == GameState::RUNNING) {
 </head>
 
 <body>
+  <?php
+  switch ($state) {
+    case GameState::CPUW:
+      break;
+    case GameState::PLAYERW:
+      break;
+    case GameState::TIED:
+      break;
+    default:
+  }
+  ?>
 </body>
 
 </html>

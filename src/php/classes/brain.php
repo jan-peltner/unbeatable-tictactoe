@@ -1,7 +1,7 @@
 <?php
 interface MakeMove
 {
-  public function make_move(): array;
+  public function make_move(): string;
 }
 
 class Brain
@@ -24,7 +24,7 @@ class NaiveBrain extends Brain implements MakeMove
   {
     parent::__construct($board);
   }
-  public function make_move(): array
+  public function make_move(): string
   {
     $empty_spaces = array();
 
@@ -35,7 +35,7 @@ class NaiveBrain extends Brain implements MakeMove
     };
     $move_idx = $empty_spaces[rand(0, count($empty_spaces) - 1)];
     $this->execute_move($move_idx);
-    return $this->board;
+    return implode($this->board);
   }
 }
 
@@ -45,8 +45,8 @@ class SmartBrain extends Brain implements MakeMove
   {
     parent::__construct($board);
   }
-  public function make_move(): array
+  public function make_move(): string
   {
-    return array();
+    return implode(array());
   }
 }
