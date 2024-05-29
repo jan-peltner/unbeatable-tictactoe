@@ -30,9 +30,10 @@ if ($state == GameState::RUNNING) {
   <link rel="shortcut icon" href="">
   <link rel="stylesheet" href="src/css/main.min.css">
   <title>Unbeatable TicTacToe</title>
+  <script defer src="src/js/alpine.js"></script>
 </head>
 
-<body>
+<body class="h-screen flex flex-col justify-center items-center gap-4 bg-gray-300 text-indigo-500">
   <?php
   switch ($state) {
     case GameState::CPUW:
@@ -50,6 +51,7 @@ if ($state == GameState::RUNNING) {
       break;
   }
   ?>
+  </div>
 </body>
 
 </html>
