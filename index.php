@@ -1,6 +1,7 @@
 <?php
 if ($_GET["board"] == null) {
-  die("Please provide a board param.");
+  $redirect_path = "/tictactoe?board=000000000";
+  header("location: $redirect_path");
 }
 
 require "src/php/classes/board.php";
@@ -10,7 +11,9 @@ $board_obj = new Board($_GET["board"]);
 
 // evaluate move made by player
 $state = $board_obj->evaluate();
-if ($state == GameState::RUNNING) {
+
+// only construct a CPU brain and let it make a move if the game is running and we don't have an empty board state
+if (array_sum($board_obj->input_parsed) != 0 && $state == GameState::RUNNING) {
   $naive_brain = new NaiveBrain($board_obj->input_parsed);
   $board_ser = $naive_brain->make_move();
   $board_obj = new Board($board_ser);
