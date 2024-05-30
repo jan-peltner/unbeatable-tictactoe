@@ -1,7 +1,7 @@
 <?php
 if ($_GET["board"] == null) {
   $redirect_path = "/tictactoe?board=000000000";
-  header("location: $redirect_path");
+  header("location: $redirect_path", false, 301);
 }
 
 require "src/php/classes/board.php";
@@ -33,7 +33,8 @@ if (array_sum($board_obj->input_parsed) != 0 && $state == GameState::RUNNING) {
   <link rel="shortcut icon" href="">
   <link rel="stylesheet" href="src/css/main.min.css">
   <title>Unbeatable TicTacToe</title>
-  <script defer src="src/js/alpine.js"></script>
+  <script defer src="src/js/vendor/alpine.js"></script>
+  <script src="src/js/board.js"></script>
 </head>
 
 <body class="h-screen flex flex-col justify-center items-center gap-4 bg-gray-300 text-indigo-500">
