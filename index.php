@@ -34,7 +34,7 @@ if (array_sum($board_obj->input_parsed) != 0 && $state == GameState::RUNNING) {
   <link rel="stylesheet" href="src/css/main.min.css">
   <title>Unbeatable TicTacToe</title>
   <script defer src="src/js/vendor/alpine.js"></script>
-  <script src="src/js/board.js"></script>
+  <script src="src/js/data.js"></script>
 </head>
 
 <body class="h-screen flex flex-col justify-center items-center gap-4 bg-gray-300 text-indigo-500">
