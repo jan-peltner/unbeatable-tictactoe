@@ -14,8 +14,8 @@ $state = $board_obj->evaluate();
 
 // only construct a CPU brain and let it make a move if the game is running and we don't have an empty board state
 if (array_sum($board_obj->input_parsed) != 0 && $state == GameState::RUNNING) {
-  $naive_brain = new NaiveBrain($board_obj->input_parsed);
-  $board_ser = $naive_brain->make_move();
+  $brain = new SmartBrain($board_obj->input_parsed);
+  $board_ser = $brain->make_move();
   $board_obj = new Board($board_ser);
   // evaluate move made by CPU 
   $state = $board_obj->evaluate();
@@ -39,6 +39,10 @@ if (array_sum($board_obj->input_parsed) != 0 && $state == GameState::RUNNING) {
 
 <body class="h-screen flex flex-col justify-center items-center gap-4 bg-gray-300 text-indigo-500">
   <?php
+  if (array_sum($board_obj->input_parsed) != 0) {
+    $computed_boards_msg = "Computed " . $brain->computed_boards .  " boards";
+    echo "<p>$computed_boards_msg</p>";
+  }
   switch ($state) {
     case GameState::CPUW:
       require "src/php/components/cpuw.php";
