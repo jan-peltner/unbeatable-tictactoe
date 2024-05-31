@@ -39,7 +39,7 @@ if (array_sum($board_obj->input_parsed) != 0 && $state == GameState::RUNNING) {
 
 <body class="h-screen flex flex-col justify-center items-center gap-4 bg-gray-300 text-indigo-500">
   <?php
-  if (array_sum($board_obj->input_parsed) != 0) {
+  if (array_sum($board_obj->input_parsed) != 0 && $state == GameState::RUNNING) {
     $computed_boards_msg = "Computed " . $brain->computed_boards .  " boards";
     echo "<p>$computed_boards_msg</p>";
   }
